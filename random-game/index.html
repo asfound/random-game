@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" />
-    <title>Random game</title>
-</head>
-<body>
-    <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="./public/assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-bar">
+        <h1 class="game-name">Cross-Check Revenge</h1>
+      </div>
+      <div class="main-content">
+        <header class="header">
+          <nav class="menu">
+            <ul class="menu__list">
+              <li class="menu__item menu__active">Игра</li>
+              <li class="menu__item">Правила</li>
+              <li class="menu__item">Очки</li>
+              <li class="menu__item">Лидеры</li>
+            </ul>
+          </nav>
+        </header>
+        <main class="main">
+          <div class="board">
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+            <div class="board__tile"><div class="tile__cutout"></div></div>
+          </div>
+          <button class="main__button">Start</button>
+        </main>
+        <footer class="footer">
+          <div class="footer__container">
+            <a
+              href="https://rs.school/courses/javascript-ru"
+              target="_blank"
+              class="footer__link"
+            >
+              <img
+                src="public/assets/icons/rs-school-logo.svg"
+                alt="RSS Logo"
+                class="rss-logo"
+                width="75"
+              />
+            </a>
+            <p class="footer__info">
+              2024,
+              <a
+                href="https://github.com/asfound"
+                target="_blank"
+                class="footer__link"
+                >GitHub: asfound
+              </a>
+            </p>
+          </div>
+        </footer>
+      </div>
+      <div class="right-bar"></div>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
 </html>
