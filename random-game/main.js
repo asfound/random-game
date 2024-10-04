@@ -1,2 +1,2 @@
-// import './style.css'
+import '/public/assets/styles/main.css'
 

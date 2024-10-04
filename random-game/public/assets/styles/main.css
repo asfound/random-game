@@ -1,0 +1,41 @@
+@import "./reset.css";
+@import "./fonts.css";
+
+@import "./header.css";
+@import "./game.css";
+@import "./footer.css";
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-bar {
+  background-color: rgb(255, 218, 31);
+  flex-grow: 1;
+  position: relative;
+}
+
+.game-name {
+  color: white;
+  transform: rotate(180deg);
+  font-weight: bold;
+  font-size: calc(90vh / 10);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  position: absolute;
+  right: -0.3em;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  padding: 30px;
+}
+
+.main {
+  margin: 0 auto;
+  text-align: center;
+}
