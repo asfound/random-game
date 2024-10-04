@@ -1,29 +1,66 @@
 import "/public/assets/styles/main.css";
-
-// document.querySelector(".board__tile").addEventListener("click", () => {
-//   document.querySelector(".tile__cap").classList.toggle("lifted");
-// });
+import { setUpGame } from "./js/setup";
+// import { startGame } from "./js/logic";
 
 window.onload = function () {
   setUpGame();
 };
 
-function setUpGame() {
-  for (let i = 0; i < 9; i++) {
-    document.querySelector(".board").appendChild(generateTile(i));
+let gameOver = true;
+let score;
+let lives;
+
+document.querySelector(".main__button").addEventListener("click", startGame);
+document.querySelector(".board").addEventListener("click", (event) => {
+//   const isMole = event.target.closest("img");
+//   const isViewer = event.target.closest("img");
+  console.log(event.target);
+});
+
+function startGame() {
+  gameOver = false;
+  score = 0;
+  lives = 2;
+  setInterval(placeMole, 1500);
+}
+
+let currentMoleTile;
+let toRemove;
+
+function placeMole() {
+  if (currentMoleTile) {
+    currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+    toRemove = currentMoleTile.querySelector(".mole");
+    setTimeout(() => {
+      toRemove.remove();
+      createMole();
+    }, 500);
+  } else {
+    createMole();
   }
 }
 
-function generateTile(i) {
-  let tile = document.createElement("div");
-  tile.classList.add("board__tile");
-  tile.id = i.toString();
+function createMole() {
+  let moleType = getRandomMole();
+  let mole = document.createElement("img");
+  mole.classList.add("mole");
+  mole.src = `./public/assets/images/mole_${moleType}.svg`;
+  if (moleType === "1") {
+    mole.classList.add("viewer");
+  }
 
-  let tileCap = document.createElement("img");
-  tileCap.classList.add("tile__cap");
-  tileCap.src = `./public/assets/images/${i}.png`;
+  let id = getRandomTile();
+  currentMoleTile = document.getElementById(id);
+  currentMoleTile.appendChild(mole);
+  currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+}
 
-  tile.appendChild(tileCap);
+function getRandomTile() {
+  let id = Math.floor(Math.random() * 9);
+  return id.toString();
+}
 
-  return tile
+function getRandomMole() {
+  let id = Math.floor(Math.random() * 2);
+  return id.toString();
 }
