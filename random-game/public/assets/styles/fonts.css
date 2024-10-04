@@ -1,17 +1,17 @@
 @font-face {
-    font-family: "SF Pro";
-    src: url("../fonts/SF-Pro-Text-Regular.woff2") format("woff2"),
-      url("../fonts/SF-Pro-Text-Regular.woff") format("woff"),
-      url("../fonts/SF-Pro-Text-Regular.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: "SF Pro";
-    src: url("../fonts/SF-Pro-Text-Bold.woff2") format("woff2"),
-      url("../fonts/SF-Pro-Text-Bold.woff") format("woff"),
-      url("../assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
-    font-weight: bold;
-    font-style: normal;
-  }
+  font-family: "SF Pro";
+  src: url("../fonts/SF-Pro-Text-Regular.woff2") format("woff2"),
+    url("../fonts/SF-Pro-Text-Regular.woff") format("woff"),
+    url("../fonts/SF-Pro-Text-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("../fonts/SF-Pro-Text-Bold.woff2") format("woff2"),
+    url("../fonts/SF-Pro-Text-Bold.woff") format("woff"),
+    url("../assets/fonts/SF-Pro-Text-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
