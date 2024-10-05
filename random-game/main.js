@@ -9,19 +9,21 @@ window.onload = function () {
 let gameOver = true;
 let score;
 let lives;
+let moleInterval;
 
 document.querySelector(".main__button").addEventListener("click", startGame);
 document.querySelector(".board").addEventListener("click", (event) => {
-//   const isMole = event.target.closest("img");
-//   const isViewer = event.target.closest("img");
-  console.log(event.target);
+  const clickedImg = event.target.closest(".mole");
+  if (clickedImg) {
+    handleClick(clickedImg);
+  }
 });
 
 function startGame() {
   gameOver = false;
   score = 0;
-  lives = 2;
-  setInterval(placeMole, 1500);
+  lives = 3;
+  moleInterval = setInterval(placeMole, 1500);
 }
 
 let currentMoleTile;
@@ -63,4 +65,28 @@ function getRandomTile() {
 function getRandomMole() {
   let id = Math.floor(Math.random() * 2);
   return id.toString();
+}
+
+function handleClick(img) {
+  if (img.classList.contains("viewer")) {
+    lives -= 1;
+    if (lives === 0) endGame();
+    updateLives(lives);
+  } else {
+    score += 10;
+    document.querySelector(".stats__score").innerHTML = `${score}/100`;
+  }
+}
+
+function updateLives() {
+  const life = "#";
+  document.querySelector(".lives__current").innerHTML = `${life.repeat(lives)}`;
+  document.querySelector(".lives__lost").innerHTML = `${life.repeat(
+    3 - lives
+  )}`;
+}
+
+function endGame() {
+  gameOver = true;
+  clearInterval(moleInterval);
 }
