@@ -14,6 +14,7 @@ let moleInterval;
 let timer;
 let countdown;
 let toRemove;
+let isCapLifted = false;
 
 document.querySelector(".main__button").addEventListener("click", startGame);
 document.querySelector(".board").addEventListener("click", (event) => {
@@ -34,29 +35,25 @@ function startGame() {
   score = 0;
   lives = 3;
   timer = 60;
-  moleInterval = setInterval(placeMole, 1000);
+  moleInterval = setInterval(placeMole, 500);
   setCountdown();
 }
 
 let currentMoleTile;
 
 function placeMole() {
-    
-  if (currentMoleTile) {
+  if (isCapLifted) {
     toggleCurrentCap();
-
-    currentMoleTile.querySelector(".tile__cap").addEventListener(
-      "transitionend",
-      () => {
-        if (gameOver) return;
-        toRemove = currentMoleTile.querySelector(".mole");
-        toRemove.remove();    
-        createMole();
-      },
-      { once: true }
-    );
+    isCapLifted = false;
   } else {
+    if (gameOver) return;
+    if (currentMoleTile) {
+      toRemove = currentMoleTile.querySelector(".mole");
+      toRemove.remove();
+    }
     createMole();
+    toggleCurrentCap();
+    isCapLifted = true;
   }
 }
 
@@ -73,7 +70,6 @@ function createMole() {
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
   currentMoleTile.appendChild(mole);
-  toggleCurrentCap();
 }
 
 function getRandomTile() {
