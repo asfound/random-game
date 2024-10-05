@@ -1,5 +1,6 @@
 import "/public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
+import { resetStats } from "./js/setup";
 // import { startGame } from "./js/logic";
 
 window.onload = function () {
@@ -12,6 +13,7 @@ let lives;
 let moleInterval;
 let timer;
 let countdown;
+let toRemove;
 
 document.querySelector(".main__button").addEventListener("click", startGame);
 document.querySelector(".board").addEventListener("click", (event) => {
@@ -27,24 +29,29 @@ function startGame() {
   if (!gameOver) {
     return;
   }
+  resetStats();
   gameOver = false;
   score = 0;
   lives = 3;
-  timer = 10;
-  moleInterval = setInterval(placeMole, 1500);
+  timer = 60;
+  moleInterval = setInterval(placeMole, 1200);
   setCountdown();
 }
 
 let currentMoleTile;
 
 function placeMole() {
+    
   if (currentMoleTile) {
+    console.log("closing cap!")
     toggleCurrentCap();
 
     currentMoleTile.querySelector(".tile__cap").addEventListener(
       "transitionend",
       () => {
-        currentMoleTile.querySelector(".mole").remove();
+        if (gameOver) return;
+        toRemove = currentMoleTile.querySelector(".mole");
+        toRemove.remove();    
         createMole();
       },
       { once: true }
@@ -66,6 +73,7 @@ function createMole() {
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
   currentMoleTile.appendChild(mole);
+  console.log("opening cap!")
   toggleCurrentCap();
 }
 
@@ -103,15 +111,17 @@ function updateLives() {
 }
 
 function endGame() {
+  console.log("game ended!")
   clearInterval(moleInterval);
-  toggleCurrentCap();
+  gameOver = true;
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
     () => {
-      currentMoleTile.querySelector(".mole").remove();
+      toRemove = currentMoleTile.querySelector(".mole");
+      toRemove.remove();
       currentMoleTile = "";
       gameOver = true;
-      alert(`Game Over!\nYour final score: ${score}`);
+      generateAlert();
     },
     { once: true }
   );
@@ -128,7 +138,22 @@ function setCountdown() {
 
     if (timer <= 0) {
       clearInterval(countdown);
+      clearInterval(moleInterval);
       endGame();
     }
   }, 1000);
+}
+
+function generateAlert() {
+  if (lives === 0) {
+    alert(`Тебя отчислили!\nТвой счет: ${score}.\nПопробуй еще раз.`);
+  }
+  if (timer <= 0) {
+    alert(`Время вышло!\nТвой счет: ${score}.\nПопробуй еще раз.`);
+  }
+  if (score === 100) {
+    alert(
+      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`
+    );
+  }
 }

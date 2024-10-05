@@ -11,14 +11,17 @@
 }
 
 .stats__time {
+    position: relative;
+    width: 21px;
   color: #bf71cc;
 }
 
 .stats__time::before {
   content: "\f017";
+  position: absolute;
   font-family: "Font Awesome 6 Free";
-  margin-right: 8px;
-  display: inline-block;
+  top: 1px;
+  right: 25px;
   font-size: 14px;
 }
 

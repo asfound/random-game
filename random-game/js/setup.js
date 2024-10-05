@@ -21,7 +21,7 @@ function generateTile(i) {
   return tile;
 }
 
-function resetStats() {
+export function resetStats() {
   document.querySelector(".stats__time").innerHTML = "60";
   document.querySelector(".stats__score").innerHTML = "0/100";
   document.querySelector(".lives__lost").innerHTML = "";
