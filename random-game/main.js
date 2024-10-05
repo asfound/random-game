@@ -34,7 +34,7 @@ function startGame() {
   score = 0;
   lives = 3;
   timer = 60;
-  moleInterval = setInterval(placeMole, 1200);
+  moleInterval = setInterval(placeMole, 1000);
   setCountdown();
 }
 
@@ -43,7 +43,6 @@ let currentMoleTile;
 function placeMole() {
     
   if (currentMoleTile) {
-    console.log("closing cap!")
     toggleCurrentCap();
 
     currentMoleTile.querySelector(".tile__cap").addEventListener(
@@ -65,6 +64,7 @@ function createMole() {
   let moleType = getRandomMole();
   let mole = document.createElement("img");
   mole.classList.add("mole");
+  mole.draggable = false;
   mole.src = `./public/assets/images/mole_${moleType}.svg`;
   if (moleType === "1") {
     mole.classList.add("viewer");
@@ -73,7 +73,6 @@ function createMole() {
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
   currentMoleTile.appendChild(mole);
-  console.log("opening cap!")
   toggleCurrentCap();
 }
 
@@ -95,7 +94,6 @@ function handleClick(img) {
   } else {
     score += 10;
     if (score === 100) {
-      clearInterval(countdown);
       endGame();
     }
     document.querySelector(".stats__score").innerHTML = `${score}/100`;
@@ -111,8 +109,8 @@ function updateLives() {
 }
 
 function endGame() {
-  console.log("game ended!")
   clearInterval(moleInterval);
+  clearInterval(countdown);
   gameOver = true;
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
