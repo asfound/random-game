@@ -10,33 +10,45 @@ let gameOver = true;
 let score;
 let lives;
 let moleInterval;
+let timer;
+let countdown;
 
 document.querySelector(".main__button").addEventListener("click", startGame);
 document.querySelector(".board").addEventListener("click", (event) => {
   const clickedImg = event.target.closest(".mole");
+
   if (clickedImg) {
     handleClick(clickedImg);
+    clickedImg.style.pointerEvents = "none";
   }
 });
 
 function startGame() {
+  if (!gameOver) {
+    return;
+  }
   gameOver = false;
   score = 0;
   lives = 3;
+  timer = 10;
   moleInterval = setInterval(placeMole, 1500);
+  setCountdown();
 }
 
 let currentMoleTile;
-let toRemove;
 
 function placeMole() {
   if (currentMoleTile) {
-    currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
-    toRemove = currentMoleTile.querySelector(".mole");
-    setTimeout(() => {
-      toRemove.remove();
-      createMole();
-    }, 500);
+    toggleCurrentCap();
+
+    currentMoleTile.querySelector(".tile__cap").addEventListener(
+      "transitionend",
+      () => {
+        currentMoleTile.querySelector(".mole").remove();
+        createMole();
+      },
+      { once: true }
+    );
   } else {
     createMole();
   }
@@ -54,7 +66,7 @@ function createMole() {
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
   currentMoleTile.appendChild(mole);
-  currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+  toggleCurrentCap();
 }
 
 function getRandomTile() {
@@ -74,6 +86,10 @@ function handleClick(img) {
     updateLives(lives);
   } else {
     score += 10;
+    if (score === 100) {
+      clearInterval(countdown);
+      endGame();
+    }
     document.querySelector(".stats__score").innerHTML = `${score}/100`;
   }
 }
@@ -87,6 +103,32 @@ function updateLives() {
 }
 
 function endGame() {
-  gameOver = true;
   clearInterval(moleInterval);
+  toggleCurrentCap();
+  currentMoleTile.querySelector(".tile__cap").addEventListener(
+    "transitionend",
+    () => {
+      currentMoleTile.querySelector(".mole").remove();
+      currentMoleTile = "";
+      gameOver = true;
+      alert(`Game Over!\nYour final score: ${score}`);
+    },
+    { once: true }
+  );
+}
+
+function toggleCurrentCap() {
+  currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+}
+
+function setCountdown() {
+  countdown = setInterval(() => {
+    timer--;
+    document.querySelector(".stats__time").textContent = `${timer}`;
+
+    if (timer <= 0) {
+      clearInterval(countdown);
+      endGame();
+    }
+  }, 1000);
 }
