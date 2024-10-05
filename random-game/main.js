@@ -15,8 +15,18 @@ let timer;
 let countdown;
 let toRemove;
 let isCapLifted = false;
+let currentMoleTile;
 
-document.querySelector(".main__button").addEventListener("click", startGame);
+document.querySelector(".main__button").addEventListener("click", () => {
+  if (gameOver) {
+    startGame();
+  } else {
+    clearInterval(countdown);
+    clearInterval(moleInterval);
+    gameOver = true;
+    setUpGame();
+  }
+});
 document.querySelector(".board").addEventListener("click", (event) => {
   const clickedImg = event.target.closest(".mole");
 
@@ -30,6 +40,7 @@ function startGame() {
   if (!gameOver) {
     return;
   }
+  document.querySelector(".main__button").innerText = 'Сбросить';
   resetStats();
   gameOver = false;
   score = 0;
@@ -38,8 +49,6 @@ function startGame() {
   moleInterval = setInterval(placeMole, 500);
   setCountdown();
 }
-
-let currentMoleTile;
 
 function placeMole() {
   if (isCapLifted) {
@@ -143,7 +152,9 @@ function generateAlert() {
     alert(`Тебя отчислили!\nТвой счет: ${score}.\nПопробуй еще раз.`);
   }
   if (timer <= 0) {
-    alert(`Время вышло!\nТвой счет: ${score}.\nПопробуй еще раз.`);
+    alert(
+      `Ты не успел вернуть все баллы!\nТвой счет: ${score}.\nПопробуй еще раз.`
+    );
   }
   if (score === 100) {
     alert(

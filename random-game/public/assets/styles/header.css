@@ -29,6 +29,10 @@
   background-color: rgb(255, 218, 31);
 }
 
+.menu__item:active {
+  background-color: #bf71cc;
+}
+
 .menu__active {
   color: white;
   background-color: rgb(255, 218, 31);

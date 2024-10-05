@@ -1,6 +1,8 @@
 export function setUpGame() {
+  document.querySelector(".board").innerHTML = '';
   resetStats();
   generateBoard();
+  document.querySelector(".main__button").innerText = 'Начать';
 }
 
 function generateBoard() {

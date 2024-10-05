@@ -11,8 +11,8 @@
 }
 
 .stats__time {
-    position: relative;
-    width: 21px;
+  position: relative;
+  width: 21px;
   color: #bf71cc;
 }
 
@@ -138,8 +138,12 @@
   transition: 0.2s;
 }
 
-.button:hover {
+/* .button:hover {
   background-color: rgb(255, 218, 31);
+} */
+
+.button:active {
+  background-color:  rgb(255, 218, 31);
 }
 
 .right-bar {
