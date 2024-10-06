@@ -12,9 +12,46 @@ export async function getScores() {
       },
     });
     const data = await response.json();
-    return data;
+    return data.top;
   } catch (error) {
     console.error("Ошибка при получении данных:", error);
   }
 }
 
+// let newScore = {
+//     playerName: "Player1",
+//     score: 123,
+//   };
+
+export async function updateScores(newScore) {
+  try {
+    const currentScores = await getScores();
+    console.log(currentScores);
+    if (
+      currentScores.length < 10 ||
+      newScore.score > currentScores[currentScores.length - 1].score
+    ) {
+      currentScores.push(newScore);
+      currentScores.sort((a, b) => b.score - a.score);
+      if (currentScores.length > 10) {
+        currentScores.pop();
+      }
+    }
+    const response = await fetch(apiUrl, {
+      method: "PUT",
+      headers: {
+        "X-Access-Key": apiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ top: currentScores }),
+    });
+
+    if (response.ok) {
+      console.log("Данные успешно обновлены!");
+    } else {
+      console.error("Ошибка при обновлении данных");
+    }
+  } catch (error) {
+    console.error("Ошибка при сохранении данных:", error);
+  }
+}

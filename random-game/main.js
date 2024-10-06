@@ -2,12 +2,18 @@ import "./public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
 import { resetStats } from "./js/setup";
 import { saveScore } from "./js/local-storage";
-import './js/input.js'
-import './js/jsonbin.js'
+import "./js/input.js";
 import { getScores } from "./js/jsonbin.js";
-
+import { updateScores } from "./js/jsonbin.js";
 
 console.log(getScores());
+
+let newScore = {
+  playerName: "Player1",
+  score: 123,
+};
+
+updateScores(newScore);
 
 window.onload = function () {
   setUpGame();
@@ -167,6 +173,8 @@ function generateAlert() {
     );
   }
   if (score === 100) {
-    alert(`Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`);
+    alert(
+      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`
+    );
   }
 }
