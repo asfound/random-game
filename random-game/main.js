@@ -94,7 +94,10 @@ function getRandomMole() {
 function handleClick(img) {
   if (img.classList.contains("viewer")) {
     lives -= 1;
-    if (lives === 0) endGame();
+    if (lives === 0) {
+        score = 0;
+        endGame();
+    }
     updateLives(lives);
   } else {
     score += 10;
@@ -125,6 +128,7 @@ function endGame() {
       currentMoleTile = "";
       gameOver = true;
       generateAlert();
+      setUpGame();
     },
     { once: true }
   );
