@@ -66,3 +66,56 @@
 .settings__icon:active {
   opacity: 100%;
 }
+
+.label {
+  margin-right: 5px;
+  opacity: 40%;
+}
+
+.input[type="text"] {
+  text-align: center;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #5370cf;
+  background-color: #f0f0f0;
+}
+
+.input[type="text"]:focus {
+  color: black;
+}
+
+.input[type="text"]::placeholder {
+  color: white;
+}
+
+.input[type="text"]:focus::placeholder {
+  color: transparent;
+}
+
+.input__container {
+  position: relative;
+}
+
+.check {
+  display: inline-block;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  right: -30px;
+  top: 2px;
+  text-align: center;
+  line-height: 18px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(255, 218, 31);
+  transition: 0.3s;
+}
+
+.check:hover {
+  color: black;
+}
+
+.check:active {
+  background-color: #bf71cc;
+}

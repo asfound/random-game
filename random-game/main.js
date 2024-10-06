@@ -1,7 +1,8 @@
-import "/public/assets/styles/main.css";
+import "./public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
 import { resetStats } from "./js/setup";
 import { saveScore } from "./js/local-storage";
+import './js/input.js'
 
 window.onload = function () {
   setUpGame();
