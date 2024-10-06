@@ -3,6 +3,11 @@ import { setUpGame } from "./js/setup";
 import { resetStats } from "./js/setup";
 import { saveScore } from "./js/local-storage";
 import './js/input.js'
+import './js/jsonbin.js'
+import { getScores } from "./js/jsonbin.js";
+
+
+console.log(getScores());
 
 window.onload = function () {
   setUpGame();
