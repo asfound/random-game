@@ -1,7 +1,7 @@
 import "/public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
 import { resetStats } from "./js/setup";
-// import { startGame } from "./js/logic";
+import { saveScore } from "./js/local-storage";
 
 window.onload = function () {
   setUpGame();
@@ -40,7 +40,7 @@ function startGame() {
   if (!gameOver) {
     return;
   }
-  document.querySelector(".main__button").innerText = 'Сбросить';
+  document.querySelector(".main__button").innerText = "Сбросить";
   resetStats();
   gameOver = false;
   score = 0;
@@ -95,8 +95,8 @@ function handleClick(img) {
   if (img.classList.contains("viewer")) {
     lives -= 1;
     if (lives === 0) {
-        score = 0;
-        endGame();
+      score = 0;
+      endGame();
     }
     updateLives(lives);
   } else {
@@ -120,13 +120,13 @@ function endGame() {
   clearInterval(moleInterval);
   clearInterval(countdown);
   gameOver = true;
+  saveScore(score, timer);
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
     () => {
       toRemove = currentMoleTile.querySelector(".mole");
       toRemove.remove();
       currentMoleTile = "";
-      gameOver = true;
       generateAlert();
       setUpGame();
     },
@@ -161,8 +161,6 @@ function generateAlert() {
     );
   }
   if (score === 100) {
-    alert(
-      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`
-    );
+    alert(`Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`);
   }
 }
