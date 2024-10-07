@@ -3,6 +3,7 @@
 
 @import "./header.css";
 @import "./game.css";
+@import "./tabs.css";
 @import "./footer.css";
 
 .container {
@@ -45,3 +46,5 @@
   opacity: 0;
   pointer-events: none;
 }
+
+

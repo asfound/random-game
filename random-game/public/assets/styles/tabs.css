@@ -1,0 +1,41 @@
+
+.rules__text {
+    max-width: 310px;
+    text-align: left;
+    text-indent: 20px;
+    margin-bottom: 15px;
+}
+
+.rules__life {
+    color: #db876f;
+    font-weight: bold;
+}
+
+.rules__score {
+    color: #5370cf;
+    font-weight: bold;
+}
+
+.rules__time {
+    color: #bf71cc;
+    font-weight: bold;
+}
+
+.rules__container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 40px 0;
+}
+
+.rules__img { 
+    max-width: 120px;
+    max-height: 110px;
+}
+
+.rules__figure {
+    margin-right: 30px;
+}
+
+.rules__caption {
+    font-size: 14px;
+}

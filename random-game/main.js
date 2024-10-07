@@ -6,6 +6,8 @@ import "./js/input.js";
 // import { getScores } from "./js/jsonbin.js";
 import { updateScores } from "./js/jsonbin.js";
 
+import "./js/tabs.js"
+
 
 // updateScores(newScore);
 
@@ -33,15 +35,6 @@ document.querySelector(".main__button").addEventListener("click", () => {
     setUpGame();
   }
 });
-
-// document.querySelector(".board").addEventListener("click", (event) => {
-//   const clickedImg = event.target.closest(".mole");
-
-//   if (clickedImg) {
-//     handleClick(clickedImg);
-//     clickedImg.style.pointerEvents = "none";
-//   }
-// });
 
 function startGame() {
   if (!gameOver) {
