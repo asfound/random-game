@@ -3,17 +3,11 @@ import { setUpGame } from "./js/setup";
 import { resetStats } from "./js/setup";
 import { saveScore } from "./js/local-storage";
 import "./js/input.js";
-import { getScores } from "./js/jsonbin.js";
+// import { getScores } from "./js/jsonbin.js";
 import { updateScores } from "./js/jsonbin.js";
 
-console.log(getScores());
 
-let newScore = {
-  playerName: "Player1",
-  score: 123,
-};
-
-updateScores(newScore);
+// updateScores(newScore);
 
 window.onload = function () {
   setUpGame();
@@ -39,14 +33,15 @@ document.querySelector(".main__button").addEventListener("click", () => {
     setUpGame();
   }
 });
-document.querySelector(".board").addEventListener("click", (event) => {
-  const clickedImg = event.target.closest(".mole");
 
-  if (clickedImg) {
-    handleClick(clickedImg);
-    clickedImg.style.pointerEvents = "none";
-  }
-});
+// document.querySelector(".board").addEventListener("click", (event) => {
+//   const clickedImg = event.target.closest(".mole");
+
+//   if (clickedImg) {
+//     handleClick(clickedImg);
+//     clickedImg.style.pointerEvents = "none";
+//   }
+// });
 
 function startGame() {
   if (!gameOver) {
@@ -88,6 +83,8 @@ function createMole() {
     mole.classList.add("viewer");
   }
 
+  mole.addEventListener('click', handleClick, { once: true });
+
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
   currentMoleTile.appendChild(mole);
@@ -103,8 +100,8 @@ function getRandomMole() {
   return id.toString();
 }
 
-function handleClick(img) {
-  if (img.classList.contains("viewer")) {
+function handleClick(event) {
+  if (event.target.classList.contains("viewer")) {
     lives -= 1;
     if (lives === 0) {
       score = 0;

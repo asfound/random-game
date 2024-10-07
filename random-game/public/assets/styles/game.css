@@ -110,11 +110,12 @@
   border-radius: 49%;
   z-index: 5;
   transition: bottom 0.5s;
-  pointer-events: none;
+  
 }
 
 .lifted {
   bottom: 100%;
+  pointer-events: none;
 }
 
 .tile__cutout {
