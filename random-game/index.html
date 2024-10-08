@@ -58,7 +58,7 @@
           </div>
         </header>
         <main class="main">
-          <div class="tab game hidden">
+          <div class="tab game">
             <div class="stats">
               <div class="stats__time">60</div>
               <div class="stats__score">0/100</div>
@@ -72,19 +72,22 @@
 
             <button class="main__button button">Начать</button>
           </div>
-          <div class="tab rules">
+          <div class="tab rules hidden">
             <p class="rules__text">
               В этой игре у тебе нужно отыграться на Reviewer1, который однажды
               необоснованно завалил тебя на кросс-чеке.
             </p>
             <p class="rules__text">
-              Попади по Reviewer1, чтобы получить <span class="rules__score">10 баллов</span>. Будь осторожен, не
+              Попади по Reviewer1, чтобы получить
+              <span class="rules__score">10 баллов</span>. Будь осторожен, не
               обижай ни в чём не виновного наблюдателя, иначе получишь
               предупреждение - <span class="rules__life">#</span>.
             </p>
             <p class="rules__text">
-              Твоя задача набрать <span class="rules__score">100 баллов</span> за <span class="rules__time">60 секунд</span>. Игра закончится,
-              если тебе вынесли три предупреждения или закончилось время.
+              Твоя задача набрать
+              <span class="rules__score">100 баллов</span> за
+              <span class="rules__time">60 секунд</span>. Игра закончится, если
+              тебе вынесли три предупреждения или закончилось время.
             </p>
             <div class="rules__container">
               <figure class="rules__figure">
@@ -105,8 +108,105 @@
               </figure>
             </div>
           </div>
-          <div class="tab score hidden"></div>
-          <div class="tab leaderboard hidden"></div>
+          <div class="tab score hidden">
+            <ol class="score__list">
+              <li class="score__item">
+                <span class="score__rank">1.</span>
+                <span class="score__value">160</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">2.</span>
+                <span class="score__value">140</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">3.</span>
+                <span class="score__value">100</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">4.</span>
+                <span class="score__value">100</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">5.</span>
+                <span class="score__value">100</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">6.</span>
+                <span class="score__value">100</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">7.</span>
+                <span class="score__value">100</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">8.</span>
+                <span class="score__value">10</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">9.</span>
+                <span class="score__value">10</span>
+              </li>
+              <li class="score__item">
+                <span class="score__rank">10.</span>
+                <span class="score__value">0</span>
+              </li>
+            </ol>
+            
+          </div>
+          <div class="tab leaderboard hidden">
+            <ol class="leaderboard__list">
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">1.</span>
+                <span class="leaderboard__name">PlayerOne</span>
+                <span class="leaderboard__score">148</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">2.</span>
+                <span class="leaderboard__name">PlayerTwo</span>
+                <span class="leaderboard__score">90</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">3.</span>
+                <span class="leaderboard__name">PlayerThree</span>
+                <span class="leaderboard__score">85</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">4.</span>
+                <span class="leaderboard__name">PlayerFour</span>
+                <span class="leaderboard__score">80</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">5.</span>
+                <span class="leaderboard__name">PlayerFive</span>
+                <span class="leaderboard__score">75</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">6.</span>
+                <span class="leaderboard__name">PlayerSix</span>
+                <span class="leaderboard__score">70</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">7.</span>
+                <span class="leaderboard__name">PlayerSeven</span>
+                <span class="leaderboard__score">65</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">8.</span>
+                <span class="leaderboard__name">PlayerEight</span>
+                <span class="leaderboard__score">60</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">9.</span>
+                <span class="leaderboard__name">PlayerNine</span>
+                <span class="leaderboard__score">55</span>
+              </li>
+              <li class="leaderboard__item">
+                <span class="leaderboard__rank">10.</span>
+                <span class="leaderboard__name">PlayerTen</span>
+                <span class="leaderboard__score">50</span>
+              </li>
+            </ol>
+          </div>
         </main>
         <footer class="footer">
           <div class="footer__container">
