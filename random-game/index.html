@@ -58,56 +58,8 @@
           </div>
         </header>
         <main class="main">
-          <div class="tab game">
-            <div class="stats">
-              <div class="stats__time">60</div>
-              <div class="stats__score">0/100</div>
-              <div class="stats__lives">
-                <span class="lives__lost"></span
-                ><span class="lives__current">###</span>
-              </div>
-            </div>
-
-            <div class="board"></div>
-
-            <button class="main__button button">Начать</button>
-          </div>
-          <div class="tab rules hidden">
-            <p class="rules__text">
-              В этой игре у тебе нужно отыграться на Reviewer1, который однажды
-              необоснованно завалил тебя на кросс-чеке.
-            </p>
-            <p class="rules__text">
-              Попади по Reviewer1, чтобы получить
-              <span class="rules__score">10 баллов</span>. Будь осторожен, не
-              обижай ни в чём не виновного наблюдателя, иначе получишь
-              предупреждение - <span class="rules__life">#</span>.
-            </p>
-            <p class="rules__text">
-              Твоя задача набрать
-              <span class="rules__score">100 баллов</span> за
-              <span class="rules__time">60 секунд</span>. Игра закончится, если
-              тебе вынесли три предупреждения или закончилось время.
-            </p>
-            <div class="rules__container">
-              <figure class="rules__figure">
-                <img
-                  src="./public/assets/images/mole_0.svg"
-                  alt="reviewer"
-                  class="rules__img"
-                />
-                <figcaption class="rules__caption">Reviewer1</figcaption>
-              </figure>
-              <figure class="rules__figure">
-                <img
-                  src="./public/assets/images/mole_1.svg"
-                  alt="viewer"
-                  class="rules__img"
-                />
-                <figcaption class="rules__caption">Viewer</figcaption>
-              </figure>
-            </div>
-          </div>
+          <div class="tab game"></div>
+          <div class="tab rules hidden"></div>
           <div class="tab score hidden">
             <ol class="score__list">
               <li class="score__item">
@@ -151,7 +103,6 @@
                 <span class="score__value">0</span>
               </li>
             </ol>
-            
           </div>
           <div class="tab leaderboard hidden">
             <ol class="leaderboard__list">

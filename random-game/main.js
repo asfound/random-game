@@ -1,18 +1,24 @@
 import "./public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
-import { resetStats } from "./js/setup";
-import { saveScore } from "./js/local-storage";
+import { saveScore } from "./js/score.js";
 import "./js/input.js";
-// import { getScores } from "./js/jsonbin.js";
-import { updateScores } from "./js/jsonbin.js";
+// import { getScores } from "./js/leaderboard.js";
+import { updateScores } from "./js/leaderboard.js";
 
-import "./js/tabs.js"
-
+import "./js/tabs.js";
 
 // updateScores(newScore);
 
 window.onload = function () {
   setUpGame();
+  observeGameTab();
+  document.querySelector(".main__button").addEventListener("click", () => {
+    if (gameOver) {
+      startGame();
+    } else {
+      resetGame();
+    }
+  });
 };
 
 let gameOver = true;
@@ -24,17 +30,6 @@ let countdown;
 let toRemove;
 let isCapLifted = false;
 let currentMoleTile;
-
-document.querySelector(".main__button").addEventListener("click", () => {
-  if (gameOver) {
-    startGame();
-  } else {
-    clearInterval(countdown);
-    clearInterval(moleInterval);
-    gameOver = true;
-    setUpGame();
-  }
-});
 
 function startGame() {
   if (!gameOver) {
@@ -57,8 +52,7 @@ function placeMole() {
   } else {
     if (gameOver) return;
     if (currentMoleTile) {
-      toRemove = currentMoleTile.querySelector(".mole");
-      toRemove.remove();
+      removeLastMole();
     }
     createMole();
     toggleCurrentCap();
@@ -76,7 +70,7 @@ function createMole() {
     mole.classList.add("viewer");
   }
 
-  mole.addEventListener('click', handleClick, { once: true });
+  mole.addEventListener("click", handleClick, { once: true });
 
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
@@ -118,7 +112,36 @@ function updateLives() {
   )}`;
 }
 
+function resetGame() {
+  if (isCapLifted) {
+    toggleCurrentCap();
+    isCapLifted = false;
+  }
+  clearInterval(moleInterval);
+  clearInterval(countdown);
+  gameOver = true;
+  if (currentMoleTile && currentMoleTile.querySelector) {
+    const tileCap = currentMoleTile.querySelector(".tile__cap");
+    if (tileCap) {
+      tileCap.addEventListener(
+        "transitionend",
+        () => {
+          removeLastMole();
+          currentMoleTile = "";
+          resetStats();
+        },
+        { once: true }
+      );
+    }
+  }
+  document.querySelector(".main__button").innerHTML = "Начать";
+}
+
 function endGame() {
+  if (isCapLifted) {
+    toggleCurrentCap();
+    isCapLifted = false;
+  }
   clearInterval(moleInterval);
   clearInterval(countdown);
   gameOver = true;
@@ -126,14 +149,14 @@ function endGame() {
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
     () => {
-      toRemove = currentMoleTile.querySelector(".mole");
-      toRemove.remove();
+      removeLastMole();
       currentMoleTile = "";
       generateAlert();
-      setUpGame();
+      resetStats();
     },
     { once: true }
   );
+  document.querySelector(".main__button").innerHTML = "Начать";
 }
 
 function toggleCurrentCap() {
@@ -167,4 +190,36 @@ function generateAlert() {
       `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`
     );
   }
+}
+
+function resetStats() {
+  document.querySelector(".stats__time").innerHTML = "60";
+  document.querySelector(".stats__score").innerHTML = "0/100";
+  document.querySelector(".lives__lost").innerHTML = "";
+  document.querySelector(".lives__current").innerHTML = "###";
+}
+
+function removeLastMole() {
+  toRemove = currentMoleTile.querySelector(".mole");
+  toRemove.remove();
+}
+
+function observeGameTab() {
+  const gameTab = document.querySelector(".game");
+
+  const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+      if (mutation.attributeName === "class") {
+        const classList = mutation.target.classList;
+        if (classList.contains("hidden")) {
+          resetGame();
+        }
+      }
+    }
+  });
+
+  observer.observe(gameTab, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 }

@@ -1,11 +1,12 @@
-.rules {
-  margin-bottom: 100px;
+.tab {
+  margin-top: 70px;
 }
 
 .rules__text {
   max-width: 310px;
   text-align: left;
   text-indent: 20px;
+  padding-left: 10px;
   margin-bottom: 15px;
 }
 
@@ -45,69 +46,59 @@
 
 /* ---------- score styles --------- */
 
-
-.score {
-  margin-bottom: 100px;
+.score__list {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
 }
 
-.score__list {
-    list-style-position: inside; 
-    margin: 0;
-    padding: 0;
-  }
-  
-  .score__item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  .score__rank {
-    color: #5370cf;
-    font-weight: bold;
-  }
-  
-  .score__value {
-    margin-left: 35px;
-    font-weight: normal;
-    width: 40px;
-    text-align: center;
-  }
+.score__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
 
+.score__rank {
+  color: #5370cf;
+  font-weight: bold;
+}
+
+.score__value {
+  margin-left: 35px;
+  font-weight: normal;
+  width: 40px;
+  text-align: center;
+}
 
 /* ---------- leaderboard styles --------- */
 
-.leaderboard {
-    margin-bottom: 100px;
-}
 .leaderboard__list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    max-width: 310px;
-  }
-  
-  .leaderboard__item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 0;
-  }
-  
-  .leaderboard__rank {
-    font-weight: bold;
-    width: 20px;
-    color: #5370cf;
-  }
-  
-  .leaderboard__name {
-    flex-grow: 1;
-    text-align: center;
-    padding: 0px 35px 0px 50px;
-  }
-  
-  .leaderboard__score {
-    width: 40px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-width: 310px;
+}
+
+.leaderboard__item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.leaderboard__rank {
+  font-weight: bold;
+  width: 20px;
+  color: #5370cf;
+}
+
+.leaderboard__name {
+  flex-grow: 1;
+  text-align: center;
+  padding: 0px 35px 0px 50px;
+}
+
+.leaderboard__score {
+  width: 40px;
+  font-weight: bold;
+  text-align: center;
+}
