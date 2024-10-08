@@ -2,6 +2,7 @@ import { rulesTexts } from "./texts";
 
 export function generateRulesTab() {
   const tab = document.querySelector(".rules");
+  tab.innerHTML = '';
 
   const text1 = document.createElement("p");
   text1.classList.add("rules__text");

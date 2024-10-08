@@ -2,7 +2,7 @@ const binId = "6702c398acd3cb34a8923d9d";
 const apiKey = "$2a$10$lxCiUALMchhbANQOgqQzqOAM0viir8h9pKA7OCtL9XLvmZAa0HBp.";
 const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
 
-export async function getScores() {
+async function getScores() {
   try {
     const response = await fetch(apiUrl, {
       headers: {
@@ -53,5 +53,31 @@ export async function updateScores(newScore) {
     }
   } catch (error) {
     console.error("Ошибка при сохранении данных:", error);
+  }
+}
+
+export async function generateLeaderboardTab() {
+  const scores = await getScores();
+
+  const tab = document.querySelector(".leaderboard");
+  tab.innerHTML = "";
+
+  const leaderboardList = document.createElement("ol");
+  leaderboardList.classList.add(".leaderboard__list");
+  tab.appendChild(leaderboardList);
+
+  if (scores && scores.length > 0) {
+    scores.forEach((player, index) => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("leaderboard__item");
+
+      listItem.innerHTML = `
+        <span class="leaderboard__rank">${index + 1}.</span>
+        <span class="leaderboard__name">${player.name}</span>
+        <span class="leaderboard__score">${player.score}</span>
+      `;
+
+      leaderboardList.appendChild(listItem);
+    });
   }
 }

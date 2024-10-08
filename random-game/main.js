@@ -2,7 +2,7 @@ import "./public/assets/styles/main.css";
 import { setUpGame } from "./js/setup";
 import { saveScore } from "./js/score.js";
 import "./js/input.js";
-// import { getScores } from "./js/leaderboard.js";
+
 import { updateScores } from "./js/leaderboard.js";
 
 import "./js/tabs.js";
@@ -209,6 +209,8 @@ function removeLastMole() {
   if (currentMoleTile) {
     toRemove = currentMoleTile.querySelector(".mole");
     toRemove.remove();
+  } else {
+    return;
   }
 }
 

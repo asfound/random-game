@@ -14,4 +14,26 @@ export function saveScore(score, timer) {
   }
 }
 
-// console.log(localStorage.getItem('localScores'))
+export function generateScoreTab() {
+  const scoresJson = localStorage.getItem("localScores");
+  const storedScores = scoresJson ? JSON.parse(scoresJson) : [];
+
+  const tab = document.querySelector(".score");
+  tab.innerHTML = '';
+
+  const scoreList = document.createElement("ol");
+  scoreList.classList.add(".score__list");
+  tab.appendChild(scoreList);
+
+  storedScores.forEach((score, index) => {
+    const listItem = document.createElement("li");
+    listItem.classList.add("score__item");
+
+    listItem.innerHTML = `
+      <span class="score__rank">${index + 1}.</span>
+      <span class="score__value">${score}</span>
+    `;
+
+    scoreList.appendChild(listItem);
+  });
+}
