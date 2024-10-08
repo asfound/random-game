@@ -57,27 +57,35 @@ export async function updateScores(newScore) {
 }
 
 export async function generateLeaderboardTab() {
-  const scores = await getScores();
-
   const tab = document.querySelector(".leaderboard");
   tab.innerHTML = "";
+  const loader = document.querySelector(".loader");
+  loader.classList.remove("hidden");
 
-  const leaderboardList = document.createElement("ol");
-  leaderboardList.classList.add(".leaderboard__list");
-  tab.appendChild(leaderboardList);
+  try {
+    const scores = await getScores();
 
-  if (scores && scores.length > 0) {
-    scores.forEach((player, index) => {
-      const listItem = document.createElement("li");
-      listItem.classList.add("leaderboard__item");
+    const leaderboardList = document.createElement("ol");
+    leaderboardList.classList.add("leaderboard__list");
+    tab.appendChild(leaderboardList);
 
-      listItem.innerHTML = `
+    if (scores && scores.length > 0) {
+      scores.forEach((player, index) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("leaderboard__item");
+
+        listItem.innerHTML = `
         <span class="leaderboard__rank">${index + 1}.</span>
         <span class="leaderboard__name">${player.name}</span>
         <span class="leaderboard__score">${player.score}</span>
       `;
 
-      leaderboardList.appendChild(listItem);
-    });
+        leaderboardList.appendChild(listItem);
+      });
+    }
+  } catch (error) {
+    console.error("Ошибка при получении данных:", error);
+  } finally {
+    loader.classList.add("hidden");
   }
 }
