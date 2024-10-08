@@ -11,7 +11,6 @@ import "./js/tabs.js";
 
 window.onload = function () {
   setUpGame();
-  observeGameTab();
   document.querySelector(".main__button").addEventListener("click", () => {
     if (gameOver) {
       startGame();
@@ -29,7 +28,7 @@ let timer;
 let countdown;
 let toRemove;
 let isCapLifted = false;
-let currentMoleTile;
+let currentMoleTile = null;
 
 function startGame() {
   if (!gameOver) {
@@ -112,7 +111,7 @@ function updateLives() {
   )}`;
 }
 
-function resetGame() {
+export function resetGame() {
   if (isCapLifted) {
     toggleCurrentCap();
     isCapLifted = false;
@@ -127,7 +126,7 @@ function resetGame() {
         "transitionend",
         () => {
           removeLastMole();
-          currentMoleTile = "";
+          currentMoleTile = null;
           resetStats();
         },
         { once: true }
@@ -150,7 +149,7 @@ function endGame() {
     "transitionend",
     () => {
       removeLastMole();
-      currentMoleTile = "";
+      currentMoleTile = null;
       generateAlert();
       resetStats();
     },
@@ -160,7 +159,14 @@ function endGame() {
 }
 
 function toggleCurrentCap() {
-  currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+  if (currentMoleTile) {
+    const tileCap = currentMoleTile.querySelector(".tile__cap");
+    if (tileCap) {
+      currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+    }
+  } else {
+    return;
+  }
 }
 
 function setCountdown() {
@@ -200,26 +206,9 @@ function resetStats() {
 }
 
 function removeLastMole() {
-  toRemove = currentMoleTile.querySelector(".mole");
-  toRemove.remove();
+  if (currentMoleTile) {
+    toRemove = currentMoleTile.querySelector(".mole");
+    toRemove.remove();
+  }
 }
 
-function observeGameTab() {
-  const gameTab = document.querySelector(".game");
-
-  const observer = new MutationObserver((mutationsList) => {
-    for (const mutation of mutationsList) {
-      if (mutation.attributeName === "class") {
-        const classList = mutation.target.classList;
-        if (classList.contains("hidden")) {
-          resetGame();
-        }
-      }
-    }
-  });
-
-  observer.observe(gameTab, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
-}
