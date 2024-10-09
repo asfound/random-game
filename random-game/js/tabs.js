@@ -2,7 +2,7 @@ import { generateRulesTab } from "./rules";
 import { generateScoreTab } from "./score";
 import { generateLeaderboardTab } from "./leaderboard";
 import { setUpGame } from "./game-setup";
-import { clearIntervals } from "./game-logic";
+import { resetGame } from "./game-logic";
 
 const tabButtons = document.querySelectorAll(".menu__item");
 const tabs = document.querySelectorAll(".tab");
@@ -17,7 +17,7 @@ const tabActions = {
 
 tabButtons.forEach((button, i) => {
   button.addEventListener("click", () => {
-    if (!tabs[i].classList.contains("score")) clearIntervals();
+    if (!tabs[i].classList.contains("score")) resetGame();
 
     tabButtons.forEach((b) => b.classList.remove("menu__active"));
     tabs.forEach((tab) => tab.classList.add("hidden"));

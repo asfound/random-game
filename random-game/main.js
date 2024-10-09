@@ -1,6 +1,5 @@
 import "./public/assets/styles/main.css";
 import { setUpGame } from "./js/game-setup.js";
-import { saveScore } from "./js/score.js";
 import "./js/input.js";
 
 import { updateScores } from "./js/leaderboard.js";

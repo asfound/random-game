@@ -1,3 +1,4 @@
+import { saveScore } from "./score";
 
 export let gameOver = true;
 let score;
@@ -96,10 +97,10 @@ export function resetGame() {
     toggleCurrentCap();
     isCapLifted = false;
   }
-  clearInterval(moleInterval);
-  clearInterval(countdown);
+  clearIntervals() 
   gameOver = true;
-  if (currentMoleTile && currentMoleTile.querySelector) {
+
+  if (currentMoleTile && currentMoleTile.querySelector(".tile__cap")) {
     const tileCap = currentMoleTile.querySelector(".tile__cap");
     if (tileCap) {
       tileCap.addEventListener(
@@ -121,9 +122,9 @@ function endGame() {
     toggleCurrentCap();
     isCapLifted = false;
   }
-  clearInterval(moleInterval);
-  clearInterval(countdown);
+  clearIntervals() 
   gameOver = true;
+
   saveScore(score, timer);
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
@@ -154,8 +155,7 @@ function setCountdown() {
     timer--;
     document.querySelector(".stats__time").textContent = `${timer}`;
 
-    if (timer <= 0) {
-      clearIntervals()
+    if (timer == 0) {
       endGame();
     }
   }, 1000);
