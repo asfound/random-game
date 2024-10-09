@@ -87,6 +87,7 @@ function getRandomMole() {
 }
 
 function handleClick(event) {
+  event.target.classList.add('hit');
   if (event.target.classList.contains("viewer")) {
     lives -= 1;
     if (lives === 0) {

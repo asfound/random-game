@@ -95,6 +95,13 @@
   height: 100px;
   position: absolute;
   right: 0;
+  opacity: 1;
+  filter: brightness(100%);
+  transition: filter 0.1s;
+}
+
+.mole.hit {
+ filter: brightness(50%);
 }
 
 .viewer {
