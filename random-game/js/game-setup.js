@@ -1,3 +1,7 @@
+import { startGame } from "./game-logic";
+import { resetGame } from "./game-logic";
+import { gameOver } from "./game-logic";
+
 export function setUpGame() {
   const tab = document.querySelector('.game')
   tab.innerHTML = '';
@@ -48,7 +52,7 @@ function generateTile(i) {
 
   let tileCap = document.createElement("img");
   tileCap.classList.add("tile__cap");
-  tileCap.src = `/assets/images/${i}.png`;
+  tileCap.src = `../random-game/public/assets/images/${i}.png`;
   tile.appendChild(tileCap);
   return tile;
 }
@@ -57,5 +61,12 @@ function generateButton() {
   const button = document.createElement('button');
   button.classList.add('main__button', 'button');
   button.textContent = 'Начать';
+  button.addEventListener("click", () => {
+    if (gameOver) {
+      startGame();
+    } else {
+      resetGame();
+    }
+  });
   return button
 }
