@@ -1,4 +1,5 @@
 import { saveScore } from "./score";
+import { updateScores } from "./leaderboard";
 
 export let gameOver = true;
 let score;
@@ -67,7 +68,7 @@ function getRandomMole() {
 }
 
 function handleClick(event) {
-  event.target.classList.add('hit');
+  event.target.classList.add("hit");
   if (event.target.classList.contains("viewer")) {
     lives -= 1;
     if (lives === 0) {
@@ -97,7 +98,7 @@ export function resetGame() {
     toggleCurrentCap();
     isCapLifted = false;
   }
-  clearIntervals() 
+  clearIntervals();
   gameOver = true;
 
   if (currentMoleTile && currentMoleTile.querySelector(".tile__cap")) {
@@ -122,10 +123,12 @@ function endGame() {
     toggleCurrentCap();
     isCapLifted = false;
   }
-  clearIntervals() 
+  clearIntervals();
   gameOver = true;
 
   saveScore(score, timer);
+  const newEntry = generateScoreEntry(score, timer);
+  updateScores(newEntry);
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
     () => {
@@ -162,8 +165,8 @@ function setCountdown() {
 }
 
 export function clearIntervals() {
-    clearInterval(countdown);
-    clearInterval(moleInterval);
+  clearInterval(countdown);
+  clearInterval(moleInterval);
 }
 
 function generateAlert() {
@@ -196,4 +199,23 @@ function removeLastMole() {
   } else {
     return;
   }
+}
+
+// let newScore = {
+//     name: "Player1",
+//     score: 123,
+//   };
+
+function generateScoreEntry(score, timer) {
+  if (timer > 0 && score > 0) {
+    score += timer;
+  }
+  const currentPlayer = localStorage.getItem("playerName");
+
+  const newEntry = {
+    name: currentPlayer,
+    score: score,
+  };
+
+  return newEntry;
 }

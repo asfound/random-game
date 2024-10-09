@@ -19,14 +19,15 @@ async function getScores() {
 }
 
 // let newScore = {
-//     playerName: "Player1",
+//     name: "Player1",
 //     score: 123,
 //   };
+
+//  updateScores(newScore);
 
 export async function updateScores(newScore) {
   try {
     const currentScores = await getScores();
-    console.log(currentScores);
     if (
       currentScores.length < 10 ||
       newScore.score > currentScores[currentScores.length - 1].score
@@ -46,9 +47,7 @@ export async function updateScores(newScore) {
       body: JSON.stringify({ top: currentScores }),
     });
 
-    if (response.ok) {
-      console.log("Данные успешно обновлены!");
-    } else {
+    if (!response.ok) {
       console.error("Ошибка при обновлении данных");
     }
   } catch (error) {
