@@ -1,4 +1,4 @@
-const input = document.querySelector(".input");
+export const input = document.querySelector(".input");
 const check = document.querySelector(".check");
 
 
@@ -36,3 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         check.classList.add("hidden");
     }
 });
+
+export function checkName() {
+    const savedName = localStorage.getItem('playerName');
+    return !!savedName;
+}

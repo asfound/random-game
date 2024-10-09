@@ -1,6 +1,8 @@
 import { startGame } from "./game-logic";
 import { resetGame } from "./game-logic";
 import { gameOver } from "./game-logic";
+import { checkName } from "./input";
+import { input } from "./input";
 
 export function setUpGame() {
   const tab = document.querySelector('.game')
@@ -62,11 +64,18 @@ function generateButton() {
   button.classList.add('main__button', 'button');
   button.textContent = 'Начать';
   button.addEventListener("click", () => {
-    if (gameOver) {
-      startGame();
-    } else {
-      resetGame();
-    }
+if (checkName()) {
+  if (gameOver) {
+    startGame();
+  } else {
+    resetGame();
+  }
+} else {
+  alert('Введите имя, чтобы продолжить!')
+  input.focus();
+}
+
+
   });
   return button
 }
