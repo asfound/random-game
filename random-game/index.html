@@ -11,7 +11,10 @@
     <title>Random Game</title>
   </head>
   <body>
-    <div class="flashlight hidden"></div>
+    <div class="flashlight__container hidden">
+      <p class="flashlight__hint">нажмите Esc чтобы выключить фонарик</p>
+      <div class="flashlight"></div>
+    </div>
     <div class="container">
       <div class="left-bar">
         <h1 class="game-name">Cross-Check Revenge</h1>
@@ -27,7 +30,14 @@
             </ul>
           </nav>
           <div class="settings">
-            <img src="/assets/icons/flashlight.png" alt="" class="settings__icon flash__icon" title="Очки х2"/>
+            <button class="settings__button button">
+              <img
+                src="/assets/icons/flashlight.png"
+                alt=""
+                class="settings__icon"
+                title="Очки х2"
+              />
+            </button>
             <span class="divider"></span>
             <img src="/assets/icons/audio.png" alt="" class="settings__icon" />
             <span class="divider"></span>

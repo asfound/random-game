@@ -68,6 +68,15 @@
   opacity: 100%;
 }
 
+.settings__button {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+
 .label {
   margin-right: 5px;
   opacity: 40%;

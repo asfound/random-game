@@ -227,15 +227,26 @@ function generateScoreEntry(score) {
 }
 
 const flashlight = document.querySelector(".flashlight");
-const flashButton = document.querySelector(".flash__icon");
+const flashContainer = document.querySelector(".flashlight__container");
+const flashButton = document.querySelector(".settings__button");
 
 flashButton.addEventListener("click", toggleFlash);
 
 function toggleFlash() {
   resetGame();
-  flashlight.classList.toggle("hidden");
+  flashContainer.classList.toggle("hidden");
   isFlashOn = !isFlashOn;
 }
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" || event.code === 'Escape') {
+    if (isFlashOn) {
+      flashContainer.classList.add("hidden");
+      resetGame();
+      isFlashOn = !isFlashOn;
+    }
+  }
+});
 
 document.addEventListener("mousemove", (event) => {
   const x = event.clientX;
@@ -244,3 +255,10 @@ document.addEventListener("mousemove", (event) => {
   flashlight.style.left = `${x}px`;
   flashlight.style.top = `${y}px`;
 });
+
+export function isTablet() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 1024) {
+    flashButton.disabled = true;
+  }
+}
