@@ -2,7 +2,7 @@ import { generateRulesTab } from "./rules";
 import { generateScoreTab } from "./score";
 import { generateLeaderboardTab } from "./leaderboard";
 import { setUpGame } from "./game-setup";
-import { resetGame } from "./game-logic";
+import { resetGame } from "./game-logic.js";
 
 const tabButtons = document.querySelectorAll(".menu__item");
 const tabs = document.querySelectorAll(".tab");

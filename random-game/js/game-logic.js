@@ -1,6 +1,7 @@
 import { saveScore } from "./score";
 import { updateScores } from "./leaderboard";
 
+let isFlashOn = false;
 export let gameOver = true;
 let score;
 let lives;
@@ -126,9 +127,12 @@ function endGame() {
   clearIntervals();
   gameOver = true;
 
-  saveScore(score, timer);
-  const newEntry = generateScoreEntry(score, timer);
+  const finalScore = calculateScore(score, timer, isFlashOn);
+  saveScore(finalScore);
+
+  const newEntry = generateScoreEntry(finalScore);
   updateScores(newEntry);
+
   currentMoleTile.querySelector(".tile__cap").addEventListener(
     "transitionend",
     () => {
@@ -201,15 +205,17 @@ function removeLastMole() {
   }
 }
 
-// let newScore = {
-//     name: "Player1",
-//     score: 123,
-//   };
-
-function generateScoreEntry(score, timer) {
+function calculateScore(score, timer, isDouble) {
   if (timer > 0 && score > 0) {
     score += timer;
   }
+  if (isDouble) {
+    score *= 2;
+  }
+  return score;
+}
+
+function generateScoreEntry(score) {
   const currentPlayer = localStorage.getItem("playerName");
 
   const newEntry = {
@@ -219,3 +225,22 @@ function generateScoreEntry(score, timer) {
 
   return newEntry;
 }
+
+const flashlight = document.querySelector(".flashlight");
+const flashButton = document.querySelector(".flash__icon");
+
+flashButton.addEventListener("click", toggleFlash);
+
+function toggleFlash() {
+  resetGame();
+  flashlight.classList.toggle("hidden");
+  isFlashOn = !isFlashOn;
+}
+
+document.addEventListener("mousemove", (event) => {
+  const x = event.clientX;
+  const y = event.clientY;
+
+  flashlight.style.left = `${x}px`;
+  flashlight.style.top = `${y}px`;
+});

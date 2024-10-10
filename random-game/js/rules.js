@@ -16,6 +16,10 @@ export function generateRulesTab() {
   text3.classList.add("rules__text");
   text3.innerHTML = rulesTexts.text3;
 
+  const text4 = document.createElement("p");
+  text4.classList.add("rules__text");
+  text4.innerHTML = rulesTexts.text4;
+
   const container = document.createElement("div");
   container.classList.add("rules__container");
 
@@ -32,7 +36,7 @@ export function generateRulesTab() {
   );
 
   container.append(figure1, figure2);
-  tab.append(text1, text2, text3, container);
+  tab.append(text1, text2, text3, text4, container);
 }
 
 function createFigure(imgSrc, altText, captionText) {
