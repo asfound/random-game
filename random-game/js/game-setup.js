@@ -1,6 +1,6 @@
-import { startGame } from "./game-logic.js";
-import { resetGame } from "./game-logic.js";
-import { gameOver } from "./game-logic.js";
+import { startGame } from "./game-logic";
+import { resetGame } from "./game-logic";
+import { gameOver } from "./game-logic";
 import { checkName } from "./input";
 import { input } from "./input";
 
