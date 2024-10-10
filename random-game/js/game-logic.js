@@ -138,7 +138,7 @@ function endGame() {
     () => {
       removeLastMole();
       currentMoleTile = null;
-      generateAlert();
+      generateAlert(finalScore);
       resetStats();
     },
     { once: true }
@@ -173,18 +173,18 @@ export function clearIntervals() {
   clearInterval(moleInterval);
 }
 
-function generateAlert() {
+function generateAlert(currentScore) {
   if (lives === 0) {
-    alert(`Тебя отчислили!\nТвой счет: ${score}.\nПопробуй еще раз.`);
+    alert(`Тебя отчислили!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`);
   }
   if (timer <= 0) {
     alert(
-      `Ты не успел вернуть все баллы!\nТвой счет: ${score}.\nПопробуй еще раз.`
+      `Ты не успел вернуть все баллы!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`
     );
   }
   if (score === 100) {
     alert(
-      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${score + timer}.\n`
+      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`
     );
   }
 }
