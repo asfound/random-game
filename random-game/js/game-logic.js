@@ -46,7 +46,7 @@ function createMole() {
   let mole = document.createElement("img");
   mole.classList.add("mole");
   mole.draggable = false;
-  mole.src = `./public/assets/images/mole_${moleType}.svg`;
+  mole.src = `./assets/images/mole_${moleType}.svg`;
   if (moleType === "1") {
     mole.classList.add("viewer");
   }
