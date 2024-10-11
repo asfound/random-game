@@ -16,7 +16,6 @@ function saveName() {
     if (name !== '') {
         localStorage.setItem('playerName', name);
         check.classList.add("hidden");
-        alert(`Имя "${name}" сохранено!`);
         input.blur();
     }
 }

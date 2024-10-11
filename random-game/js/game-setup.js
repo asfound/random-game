@@ -71,9 +71,24 @@ function generateButton() {
         resetGame();
       }
     } else {
-      alert("Введите имя, чтобы продолжить!");
-      input.focus();
+      generateAlert();
     }
   });
   return button;
 }
+
+function generateAlert() {
+  const dialog = document.querySelector(".dialog");
+  const dialogMessage = document.querySelector(".dialog__message");
+  dialog.addEventListener(
+    "close",
+    () => {
+      input.focus();
+    },
+    { once: true }
+  );
+
+  dialogMessage.textContent = "Введите имя, чтобы продолжить!";
+  dialog.showModal();
+}
+

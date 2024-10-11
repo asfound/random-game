@@ -6,6 +6,8 @@
 @import "./tabs.css";
 @import "./footer.css";
 
+@import "./dialog.css";
+
 .container {
   display: flex;
   height: 100vh;
@@ -73,7 +75,6 @@
   color: white;
   z-index: 1000;
 }
-
 
 .button:focus-visible {
   outline: none;

@@ -138,7 +138,7 @@ function endGame() {
     () => {
       removeLastMole();
       currentMoleTile = null;
-      generateAlert(finalScore);
+      generateScoreAlert(finalScore);
       resetStats();
     },
     { once: true }
@@ -173,21 +173,30 @@ export function clearIntervals() {
   clearInterval(moleInterval);
 }
 
-function generateAlert(currentScore) {
+function generateScoreAlert(currentScore) {
+  const dialog = document.querySelector(".dialog");
+  const dialogMessage = document.querySelector(".dialog__message");
+
   if (lives === 0) {
-    alert(`Тебя отчислили!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`);
+    dialogMessage.textContent = `Тебя отчислили!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (timer <= 0) {
-    alert(
-      `Ты не успел вернуть все баллы!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`
-    );
+    dialogMessage.textContent = `Ты не успел вернуть все баллы!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (score === 100) {
-    alert(
-      `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`
-    );
+    dialogMessage.textContent = `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`;
   }
+
+  dialog.showModal();
 }
+
+document.querySelector(".dialog__button").addEventListener("click", () => {
+  const dialog = document.querySelector(".dialog");
+  const dialogMessage = document.querySelector(".dialog__message");
+
+  dialog.close();
+  dialogMessage.textContent = "";
+});
 
 function resetStats() {
   document.querySelector(".stats__time").innerHTML = "60";
@@ -239,7 +248,7 @@ function toggleFlash() {
 }
 
 document.addEventListener("keydown", function (event) {
-  if (event.key === "Escape" || event.code === 'Escape') {
+  if (event.key === "Escape" || event.code === "Escape") {
     if (isFlashOn) {
       flashContainer.classList.add("hidden");
       resetGame();

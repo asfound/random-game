@@ -1,0 +1,33 @@
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: white;
+  max-width: 350px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.dialog__button {
+  background-color: #f0f0f0;
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.dialog__button:hover {
+  background-color: rgb(255, 218, 31);
+}
+
+.dialog__button:active {
+  background-color: #bf71cc;
+}
+
+.dialog__message {
+  padding: 10px;
+  margin-bottom: 10px;
+}
