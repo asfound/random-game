@@ -88,7 +88,7 @@ function generateAlert() {
     { once: true }
   );
 
-  dialogMessage.textContent = "Введите имя, чтобы продолжить!";
+  dialogMessage.textContent = "Введите имя и нажмите Enter, чтобы продолжить!";
   dialog.showModal();
 }
 
