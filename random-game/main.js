@@ -1,4 +1,4 @@
-import "./public/assets/styles/main.css";
+import "./styles/main.css";
 import { setUpGame } from "./js/game-setup.js";
 import "./js/input.js";
 import "./js/tabs.js";

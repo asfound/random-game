@@ -54,7 +54,7 @@ function generateTile(i) {
   let tileCap = document.createElement("img");
   tileCap.classList.add("tile__cap");
   tileCap.draggable = false;
-  tileCap.src = `../random-game/public/assets/images/${i}.png`;
+  tileCap.src = `./assets/images/${i}.png`;
   tile.appendChild(tileCap);
   return tile;
 }
