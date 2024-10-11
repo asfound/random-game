@@ -7,6 +7,7 @@
 @import "./footer.css";
 
 @import "./dialog.css";
+@import "./media.css";
 
 .container {
   display: flex;

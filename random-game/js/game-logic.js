@@ -265,9 +265,3 @@ document.addEventListener("mousemove", (event) => {
   flashlight.style.top = `${y}px`;
 });
 
-export function isTablet() {
-  const screenWidth = window.innerWidth;
-  if (screenWidth <= 1024) {
-    flashButton.disabled = true;
-  }
-}

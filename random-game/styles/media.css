@@ -1,0 +1,5 @@
+@media (pointer: coarse) {
+    .settings__button:first-of-type {
+      display: none;
+    }
+  }
