@@ -12,7 +12,7 @@ input.addEventListener('input', () => {
 
 
 function saveName() {
-    const name = input.value.trim();
+    const name = input.value.trim().slice(0, 11);
     if (name !== '') {
         localStorage.setItem('playerName', name);
         check.classList.add("hidden");
