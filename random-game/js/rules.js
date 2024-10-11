@@ -24,13 +24,13 @@ export function generateRulesTab() {
   container.classList.add("rules__container");
 
   const figure1 = createFigure(
-    "./public/assets/images/mole_0.svg",
+    "./assets/images/mole_0.svg",
     "reviewer",
     "Reviewer1"
   );
 
   const figure2 = createFigure(
-    "./public/assets/images/mole_1.svg",
+    "./assets/images/mole_1.svg",
     "viewer",
     "Viewer"
   );
