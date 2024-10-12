@@ -52,6 +52,7 @@ function createMole() {
   }
 
   mole.addEventListener("click", handleClick, { once: true });
+  mole.addEventListener("touchstart", handleClick, { once: true });
 
   let id = getRandomTile();
   currentMoleTile = document.getElementById(id);
@@ -69,6 +70,8 @@ function getRandomMole() {
 }
 
 function handleClick(event) {
+  event.preventDefault();
+  
   event.target.classList.add("hit");
   if (event.target.classList.contains("viewer")) {
     lives -= 1;
