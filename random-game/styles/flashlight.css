@@ -1,0 +1,38 @@
+.flashlight__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+.flashlight {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 0.11) 10%,
+      rgba(0, 0, 0, 0) 48%,
+      rgba(0, 0, 0, 0.72) 60%,
+      rgba(0, 0, 0, 1) 70%
+    );
+    z-index: 100;
+    box-shadow: 0 0 0 9999px #000;
+    pointer-events: none;
+  }
+  
+  .flashlight__hint {
+    position: absolute;
+    width: 120px;
+    font-size: 12px;
+    top: 2%;
+    right: 2%;
+    opacity: 50%;
+    color: white;
+    z-index: 1000;
+  }
