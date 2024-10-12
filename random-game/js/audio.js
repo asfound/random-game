@@ -9,9 +9,9 @@ export let isMuted = false;
 const sounds = {
   hitViewer: new Audio(hitViewer),
   hitReviewer: new Audio(hitReviewer),
-  win: new Audio(winSound),
-  lose: new Audio(loseSound),
-  background: new Audio(backgroundSound),
+  winSound: new Audio(winSound),
+  loseSound: new Audio(loseSound),
+  backgroundSound: new Audio(backgroundSound),
 };
 
 export function playSound(soundName) {

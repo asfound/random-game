@@ -203,8 +203,10 @@ function generateScoreAlert(currentScore) {
     dialogMessage.textContent = `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`;
   }
   
+  if (soundType) {
+    playSound(soundType);
+  }
   dialog.showModal();
-  playSound(soundType);
 }
 
 document.querySelector(".dialog__button").addEventListener("click", () => {
