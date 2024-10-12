@@ -100,4 +100,3 @@ function generateAlert() {
 
   playSound("notification");
 }
-

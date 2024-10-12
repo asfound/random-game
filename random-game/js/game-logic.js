@@ -270,6 +270,7 @@ document.addEventListener("keydown", function (event) {
     if (isFlashOn) {
       flashContainer.classList.add("hidden");
       resetGame();
+      stopBackgroundSound();
       isFlashOn = !isFlashOn;
     }
   }
