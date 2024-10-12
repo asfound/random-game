@@ -63,18 +63,23 @@ function generateButton() {
   const button = document.createElement("button");
   button.classList.add("main__button", "button");
   button.textContent = "Начать";
-  button.addEventListener("click", () => {
-    if (checkName()) {
-      if (gameOver) {
-        startGame();
-      } else {
-        resetGame();
-      }
-    } else {
-      generateAlert();
-    }
-  });
+  button.addEventListener("click", handleButtonClick);
+  button.addEventListener("touchstart", handleButtonClick);
   return button;
+}
+
+function handleButtonClick(event) {
+  event.preventDefault();
+
+  if (checkName()) {
+    if (gameOver) {
+      startGame();
+    } else {
+      resetGame();
+    }
+  } else {
+    generateAlert();
+  }
 }
 
 function generateAlert() {
