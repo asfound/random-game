@@ -4,6 +4,8 @@ import { gameOver } from "./game-logic";
 import { checkName } from "./input";
 import { input } from "./input";
 
+import { playSound } from "./audio";
+
 export function setUpGame() {
   const tab = document.querySelector(".game");
   tab.innerHTML = "";
@@ -95,5 +97,7 @@ function generateAlert() {
 
   dialogMessage.textContent = "Введите имя и нажмите Enter, чтобы продолжить!";
   dialog.showModal();
+
+  playSound("notification");
 }
 

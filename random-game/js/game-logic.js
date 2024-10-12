@@ -188,24 +188,18 @@ export function clearIntervals() {
 function generateScoreAlert(currentScore) {
   const dialog = document.querySelector(".dialog");
   const dialogMessage = document.querySelector(".dialog__message");
-  let soundType = "";
 
   if (lives === 0) {
-    soundType = "loseSound";
     dialogMessage.textContent = `Тебя отчислили!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (timer <= 0) {
-    soundType = "loseSound";
     dialogMessage.textContent = `Ты не успел вернуть все баллы!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (score === 100) {
-    soundType = "winSound";
     dialogMessage.textContent = `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`;
   }
-  
-  if (soundType) {
-    playSound(soundType);
-  }
+
+  playSound("notification");
   dialog.showModal();
 }
 
@@ -261,6 +255,11 @@ const flashButton = document.querySelector(".settings__button");
 flashButton.addEventListener("click", toggleFlash);
 
 function toggleFlash() {
+  if (isFlashOn) {
+    stopBackgroundSound();
+  } else {
+    playBackgroundSound();
+  }
   resetGame();
   flashContainer.classList.toggle("hidden");
   isFlashOn = !isFlashOn;
