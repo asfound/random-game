@@ -1,6 +1,13 @@
 import { saveScore } from "./score";
 import { updateScores } from "./leaderboard";
 
+import {
+  playSound,
+  playBackgroundSound,
+  stopBackgroundSound,
+  isMuted,
+} from "./audio.js";
+
 let isFlashOn = false;
 export let gameOver = true;
 let score;
@@ -71,9 +78,10 @@ function getRandomMole() {
 
 function handleClick(event) {
   event.preventDefault();
-  
+
   event.target.classList.add("hit");
   if (event.target.classList.contains("viewer")) {
+    playSound("hitViewer");
     lives -= 1;
     if (lives === 0) {
       score = 0;
@@ -81,6 +89,7 @@ function handleClick(event) {
     }
     updateLives(lives);
   } else {
+    playSound("hitReviewer");
     score += 10;
     if (score === 100) {
       endGame();
@@ -179,18 +188,23 @@ export function clearIntervals() {
 function generateScoreAlert(currentScore) {
   const dialog = document.querySelector(".dialog");
   const dialogMessage = document.querySelector(".dialog__message");
+  let soundType = "";
 
   if (lives === 0) {
+    soundType = "loseSound";
     dialogMessage.textContent = `Тебя отчислили!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (timer <= 0) {
+    soundType = "loseSound";
     dialogMessage.textContent = `Ты не успел вернуть все баллы!\nТвой счет: ${currentScore}.\nПопробуй еще раз.`;
   }
   if (score === 100) {
+    soundType = "winSound";
     dialogMessage.textContent = `Ура, ты вернул свои баллы!\nТвой итоговый счет: ${currentScore}.\n`;
   }
-
+  
   dialog.showModal();
+  playSound(soundType);
 }
 
 document.querySelector(".dialog__button").addEventListener("click", () => {
@@ -267,4 +281,3 @@ document.addEventListener("mousemove", (event) => {
   flashlight.style.left = `${x}px`;
   flashlight.style.top = `${y}px`;
 });
-
