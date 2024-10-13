@@ -11,8 +11,6 @@
 
 .flashlight {
     position: absolute;
-    width: 350px;
-    height: 350px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
       circle,

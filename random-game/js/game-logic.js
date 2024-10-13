@@ -282,3 +282,25 @@ document.addEventListener("mousemove", (event) => {
   flashlight.style.left = `${x}px`;
   flashlight.style.top = `${y}px`;
 });
+
+
+function setFlashlightSize(width, height) {
+  flashlight.style.width = `${width}px`;
+  flashlight.style.height = `${height}px`;
+}
+
+setFlashlightSize(350, 350);
+
+function enforceFlashlightSize() {
+  const correctWidth = 350;
+  const correctHeight = 350;
+  
+  setInterval(() => {
+    if (flashlight.offsetWidth !== correctWidth || flashlight.offsetHeight !== correctHeight) {
+      flashlight.style.width = `${correctWidth}px`;
+      flashlight.style.height = `${correctHeight}px`;
+    }
+  }, 100);
+}
+
+enforceFlashlightSize();

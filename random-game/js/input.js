@@ -14,7 +14,7 @@ input.addEventListener('input', () => {
 function saveName() {
     const name = input.value.trim().slice(0, 11);
     if (name !== '') {
-        localStorage.setItem('playerName', name);
+        localStorage.setItem('asfound_game_playerName', name);
         check.classList.add("hidden");
         input.blur();
     }
@@ -29,7 +29,7 @@ input.addEventListener('keydown', (event) => {
 check.addEventListener('click', saveName);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedName = localStorage.getItem('playerName');
+    const savedName = localStorage.getItem('asfound_game_playerName');
     if (savedName) {
         input.value = savedName; 
         check.classList.add("hidden");
@@ -37,6 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 export function checkName() {
-    const savedName = localStorage.getItem('playerName');
+    const savedName = localStorage.getItem('asfound_game_playerName');
     return !!savedName;
 }
