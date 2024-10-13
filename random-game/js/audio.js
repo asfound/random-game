@@ -2,8 +2,8 @@ import hitViewer from "/assets/audio/viewer.mp3";
 import hitReviewer from "/assets/audio/reviewer.mp3";
 import backgroundSound from "/assets/audio/silence.mp3";
 import notification from "/assets/audio/notification.mp3";
-
-export let isMuted = false;
+import { isFlashOn } from "./game-logic";
+let isMuted = false;
 
 const sounds = {
   hitViewer: new Audio(hitViewer),
@@ -35,5 +35,25 @@ export function stopBackgroundSound() {
   if (background) {
     background.pause();
     background.currentTime = 0;
+  }
+}
+
+const soundIcon = document.querySelector(".mute__icon");
+const muteButton = document.querySelector(".sound__button");
+muteButton.addEventListener("click", () => {
+  isMuted = !isMuted;
+  toggleMuteIcon();
+  if (!isMuted && isFlashOn) {
+    playBackgroundSound();
+  } else {
+    stopBackgroundSound();
+  }
+});
+
+function toggleMuteIcon() {
+  if (isMuted) {
+    soundIcon.src = "./assets/icons/mute.png";
+  } else {
+    soundIcon.src = "./assets/icons/audio.png";
   }
 }

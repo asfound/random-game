@@ -4,11 +4,10 @@ import { updateScores } from "./leaderboard";
 import {
   playSound,
   playBackgroundSound,
-  stopBackgroundSound,
-  isMuted,
+  stopBackgroundSound
 } from "./audio.js";
 
-let isFlashOn = false;
+export let isFlashOn = false;
 export let gameOver = true;
 let score;
 let lives;
@@ -250,7 +249,7 @@ function generateScoreEntry(score) {
 
 const flashlight = document.querySelector(".flashlight");
 const flashContainer = document.querySelector(".flashlight__container");
-const flashButton = document.querySelector(".settings__button");
+const flashButton = document.querySelector(".flash__button");
 
 flashButton.addEventListener("click", toggleFlash);
 
