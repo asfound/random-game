@@ -10,17 +10,6 @@
 
 
 .flashlight {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(
-      circle,
-      rgba(0, 0, 0, 0.11) 10%,
-      rgba(0, 0, 0, 0) 48%,
-      rgba(0, 0, 0, 0.72) 60%,
-      rgba(0, 0, 0, 1) 70%
-    );
-    z-index: 100;
-    box-shadow: 0 0 0 9999px #000;
     pointer-events: none;
   }
   

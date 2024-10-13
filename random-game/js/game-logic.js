@@ -4,7 +4,7 @@ import { updateScores } from "./leaderboard";
 import {
   playSound,
   playBackgroundSound,
-  stopBackgroundSound
+  stopBackgroundSound,
 } from "./audio.js";
 
 export let isFlashOn = false;
@@ -283,24 +283,15 @@ document.addEventListener("mousemove", (event) => {
   flashlight.style.top = `${y}px`;
 });
 
-
-function setFlashlightSize(width, height) {
-  flashlight.style.width = `${width}px`;
-  flashlight.style.height = `${height}px`;
+function setFlashlightStyles() {
+  flashlight.style.boxShadow = "0 0 0 9999px #000";
+  flashlight.style.width = "350px";
+  flashlight.style.height = "350px";
+  flashlight.style.transform = "translate(-50%, -50%)";
+  flashlight.style.position = "absolute";
+  flashlight.style.zIndex = "100";
+  flashlight.style.background =
+    "radial-gradient(circle, rgba(0, 0, 0, 0.11) 10%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.72) 60%, rgba(0, 0, 0, 1) 70%)";
 }
 
-setFlashlightSize(350, 350);
-
-function enforceFlashlightSize() {
-  const correctWidth = 350;
-  const correctHeight = 350;
-  
-  setInterval(() => {
-    if (flashlight.offsetWidth !== correctWidth || flashlight.offsetHeight !== correctHeight) {
-      flashlight.style.width = `${correctWidth}px`;
-      flashlight.style.height = `${correctHeight}px`;
-    }
-  }, 100);
-}
-
-enforceFlashlightSize();
+setInterval(setFlashlightStyles, 100);
