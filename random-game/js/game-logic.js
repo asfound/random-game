@@ -237,7 +237,7 @@ function calculateScore(score, timer, isDouble) {
 }
 
 function generateScoreEntry(score) {
-  const currentPlayer = localStorage.getItem("playerName");
+  const currentPlayer = localStorage.getItem("asfound_game_playerName");
 
   const newEntry = {
     name: currentPlayer,
