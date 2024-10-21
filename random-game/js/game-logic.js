@@ -86,7 +86,7 @@ function handleClick(event) {
       score = 0;
       endGame();
     }
-    updateLives(lives);
+    updateLives();
   } else {
     playSound("hitReviewer");
     score += 10;
@@ -113,7 +113,7 @@ export function resetGame() {
   clearIntervals();
   gameOver = true;
 
-  if (currentMoleTile && currentMoleTile.querySelector(".tile__cap")) {
+  if (currentMoleTile?.querySelector(".tile__cap")) {
     const tileCap = currentMoleTile.querySelector(".tile__cap");
     if (tileCap) {
       tileCap.addEventListener(
@@ -161,11 +161,11 @@ function toggleCurrentCap() {
   if (currentMoleTile) {
     const tileCap = currentMoleTile.querySelector(".tile__cap");
     if (tileCap) {
-      currentMoleTile.querySelector(".tile__cap").classList.toggle("lifted");
+      tileCap.classList.toggle("lifted");
     }
   } else {
     return;
-  }
+  } 
 }
 
 function setCountdown() {

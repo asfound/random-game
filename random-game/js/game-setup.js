@@ -1,8 +1,5 @@
-import { startGame } from "./game-logic";
-import { resetGame } from "./game-logic";
-import { gameOver } from "./game-logic";
-import { checkName } from "./input";
-import { input } from "./input";
+import { startGame, resetGame, gameOver } from "./game-logic";
+import { checkName, input } from "./input";
 
 import { playSound } from "./audio";
 
